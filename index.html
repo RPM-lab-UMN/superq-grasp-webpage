@@ -23,23 +23,16 @@
 
   <script>
     function updateSingleVideo() {
-      var demo = document.getElementById("single-menu-demos").value;
-      var task = document.getElementById("single-menu-tasks").value;
-      var inst = document.getElementById("single-menu-instances").value;
+      var method = document.getElementById("single-menu-methods").value;
+      var object = document.getElementById("single-menu-objects").value;
 
-      console.log("single", demo, task, inst)
 
-      var video = document.getElementById("multi-task-result-video");
-      video.src = "media/results/sim_rollouts/" + 
-                  "n" +
-                  demo +
+      var gif = document.getElementById("synthetic-data-result-gif");
+      gif.src = "media/results/synthetic_data/" + 
+                  object +
                   "-" +
-                  task +
-                  "-" +
-                  inst +
-                  ".mp4"
-      video.playbackRate = 1.75;
-      video.play();
+                  method + 
+                  ".gif"
     }
 
     function updateQpredVideo() {
@@ -323,7 +316,7 @@
         <figure>
           <p style="text-align:center;"> 
           <img src="media/figures/superquadrics.png" class="interpolation-image" 
-          alt="Superquadrics with different parameters" align="center"/>
+          alt="Superquadrics with different parameters/>
          <figcaption style="text-align:center;">Fig.1 - Superquadrics with different parameters 
           (<a target="_blank" href="https://cse.buffalo.edu/~jryde/cse673/files/superquadrics.pdf">source</a>)
          </figcaption>
@@ -338,7 +331,12 @@
         <!-- <br> -->
         </div>
         <p>
-          The main contribution of the project is to 
+          The main contribution of the project is to estimate grasp poses on the large objects, which are uncommon 
+          in table scenarios. The key idea is to decompose the target object mesh into several primitive
+          shapes, predict grasp poses on the individual primitive shape, and then filter out the invalid
+          ones. Here, we use Superquadrics as the primitive shape, and depend on <a target="_blank" 
+          href="https://github.com/ChirikjianLab/Marching-Primitives">Marching
+          Primitives</a> to decompose the target object mesh into several smaller superquadrics. 
         </p>
         </br>
         </br>
@@ -354,8 +352,15 @@
         <h3 class="title is-4">Real-world Experiments</h3>
           <p class="justify">
             We validate the performance of our pipeline on the robotic platform
-            <a target="_blank" href="https://bostondynamics.com/products/spot/">SPOT from Boston Dynamics</a>
-             
+            <a target="_blank" href="https://bostondynamics.com/products/spot/">SPOT from Boston Dynamics</a>.
+             We use <a target="_blank" href="https://github.com/NVlabs/instant-ngp">instant-NGP</a> to construct the target object mesh.
+             Also, unlike synthetic data in simulation, the gripper pose in real-world is unknown in advance.
+             To deal with this issue, we depend on GroundingSAM and LoFTR to
+             estimate gripper pose. 
+             <br>
+             <br>
+             <img src="media/figures/overview.jpg" class="interpolation-image" 
+         alt="Interpolate system overview image." />
           </p>
         <br/>
         <br/>
@@ -364,69 +369,51 @@
 
         <h2 class="title is-3">Results</h2>
 
-        <h3 class="title is-4">Simulation Results</h3>
+        <h3 class="title is-4">Experiments on synthetic data</h3>
 
         <div class="columns">
           <div class="column has-text-centered">
-            <h3 class="title is-5">One Multi-Task Transformer</h3>
+            <h3 class="title is-5">Qualitative Results on selected Objects</h3>
 
-            Trained with
+            Method
             <div class="select is-small">
-              <select id="single-menu-demos" onchange="updateSingleVideo()">
-              <option value="10">10</option>
-              <option value="100" selected="selected">100</option>
+              <select id="single-menu-methods" onchange="updateSingleVideo()">
+              <option value="superq-grasp" selected="selected">superq-grasp</option>
+              <option value="contact-graspnet">contact-graspnet</option>
               </select>
             </div>
-            demos per task, evaluated on 
+            evaluated on the object
             <div class="select is-small">     
-              <select id="single-menu-tasks" onchange="updateSingleVideo()">
-              <option value="open_drawer" selected="selected">open drawer</option>
-              <option value="slide_block">slide block</option>
-              <option value="sweep_to_dustpan">sweep to dustpan</option>
-              <option value="meat_off_grill">meat off grill</option>
-              <option value="turn_tap">turn tap</option>
-              <option value="put_in_drawer">put in drawer</option>
-              <option value="close_jar">close jar</option>
-              <option value="drag_stick">drag stick</option>
-              <option value="stack_blocks">stack blocks</option>
-              <option value="screw_bulb">screw bulb</option>
-              <option value="put_in_safe">put in safe</option>
-              <option value="place_wine">place wine</option>
-              <option value="put_in_cupboard">put in cupboard</option>
-              <option value="sort_shape">sort shape</option>
-              <option value="push_buttons">push buttons</option>
-              <option value="insert_peg">insert peg</option>
-              <option value="stack_cups">stack cups</option>
-              <option value="place_cups">place cups</option>
+              <select id="single-menu-objects" onchange="updateSingleVideo()">
+              <option value="chair1" selected="selected">chair1</option>
+              <option value="chair2">chair2</option>
+              <option value="chair3">chair3</option>
+              <option value="cart1">cart1</option>
+              <option value="cart2">cart2</option>
+              <option value="cart3">cart3</option>
+              <option value="bucket1">bucket1</option>
+              <option value="bucket2">bucket2</option>
+              <option value="box1">box1</option>
+              <option value="box2">box2</option>
+              <option value="suitcase1">suitcase1</option>
+              <option value="suitcase2">suitcase2</option>
+              <option value="table1">table1</option>
+              <option value="table2">table2</option>
+              <option value="folding-chair1">folding-chair1</option>
               </select>
             </div>
-            episode
-            <div class="select is-small">
-              <select id="single-menu-instances" onchange="updateSingleVideo()">
-              <option value="s1">01</option>
-              <option value="s2" selected="selected">02</option>
-              <option value="s3">03</option>
-              <option value="s4">04</option>
-              <option value="s5">05</option>
-              </select>
-            </div>
+            
             <br/>
             <br/>
 
-            <video id="multi-task-result-video"
-                   muted
-                   autoplay
-                   loop
-                   width="100%">
-              <source src="media/results/sim_rollouts/n10-open_drawer-s2.mp4"
-                      type="video/mp4">
-            </video>
+            <img id="synthetic-data-result-gif" src="media/results/synthetic_data/chair1-superq-grasp.gif" class="interpolation-image" 
+                  alt="Result on the selected method and object" />
           </div>
         </div>
         </br>
         </br>
 
-        <h3 class="title is-4">Action Predictions</h3>
+        <h3 class="title is-4">Real-world Experiments</h3>
 
         <div class="columns">
           <div class="column has-text-centered">
