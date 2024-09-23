@@ -89,7 +89,7 @@
             <span class="author-block"><sup>1</sup>University of Minnesota, Twin Cities</span>
           </div>
 
-          <div class="column has-text-centered">
+<!--           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
@@ -137,7 +137,7 @@
             </span>
 
             </div>
-          </div>
+          </div> -->
 <!--           <br>
           <br> -->
 
@@ -152,10 +152,50 @@
   <div class="container is-fullhd">
     <div class="hero-body">
       <div class="container">
-        <div class="columns is-vcentered  is-centered">
-          <img src="media/figures/qual_comp.jpg" class="interpolation-image" 
-         alt="Place holder for qualitative results." />
-          </br>
+                 <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Grasp planning and estimation has been a long-
+            standing research problem in robotics, with two main approaches
+            to find graspable poses on the objects:
+            <ol>
+              <li>Geometric approach, which rely on 3D models of objects 
+                and gripper to estimate valid grasp poses</li>
+              <li>Data-driven, learning-based approach,
+                with models trained to identify grasp poses on raw sensor ob-
+                servations</li>
+            </ol>
+            The later assumes comprehensive geometric coverage
+            during training phase, which, however, are typically biased toward table-
+            top scenarios and struggle to generalize to out-of-distribution
+            scenarios with larger objects (e.g. chair). Additionally, raw
+            sensor data (e.g. RGB-D data) from a single view of these
+            larger objects is often incomplete and noisy and necessitates
+            additional observations. 
+          </p>
+          <p>
+            In this paper, we take a geometric approach, leveraging
+            advancements in object modeling (e.g. 
+            <a target="_blank" href="https://www.matthewtancik.com/nerf">NeRF</a>) 
+            to build an implicit
+            model by taking RGB images from views around the target
+            object. This model enables the extraction of explicit mesh model
+            while also capturing the visual appearance from novel viewpoints
+            that is useful for perception tasks like object detection and pose
+            estimation. We further decompose the NeRF-reconstructed 3D
+            mesh into <a target="_blank" href="https://ieeexplore.ieee.org/document/1673799">
+              Superquadrics
+            </a>(SQs) - parametric geometric primitives,
+            each mapped to a set of precomputed grasp poses, allowing
+            grasp composition on the target object based on these primitives.
+            Our proposed pipeline overcomes the problems: 
+            <ol>
+              <li>Noisy depth and incomplete view of the object, with a modelling step</li>
+              <li>Generalization to objects of any size, especially the ones larger in size and uncommon in tabletop scenarios</li>
+            </ol>
+            
+          </p>
+         
         </div>
         <br>
         <h2 class="subtitle has-text-centered">
@@ -223,51 +263,7 @@
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Grasp planning and estimation has been a long-
-            standing research problem in robotics, with two main approaches
-            to find graspable poses on the objects:
-            <ul>
-              <li>Geometric approach, which rely on 3D models of objects 
-                and gripper to estimate valid grasp poses</li>
-              <li>Data-driven, learning-based approach,
-                with models trained to identify grasp poses on raw sensor ob-
-                servations</li>
-            </ul>
-            The later assumes comprehensive geometric coverage
-            during training phase, which, however, are typically biased toward table-
-            top scenarios and struggle to generalize to out-of-distribution
-            scenarios with larger objects (e.g. chair). Additionally, raw
-            sensor data (e.g. RGB-D data) from a single view of these
-            larger objects is often incomplete and noisy and necessitates
-            additional observations. 
-          </p>
-          <p>
-            In this paper, we take a geometric approach, leveraging
-            advancements in object modeling (e.g. 
-            <a target="_blank" href="https://www.matthewtancik.com/nerf">NeRF</a>) 
-            to build an implicit
-            model by taking RGB images from views around the target
-            object. This model enables the extraction of explicit mesh model
-            while also capturing the visual appearance from novel viewpoints
-            that is useful for perception tasks like object detection and pose
-            estimation. We further decompose the NeRF-reconstructed 3D
-            mesh into <a target="_blank" href="https://ieeexplore.ieee.org/document/1673799">
-              Superquadrics
-            </a>(SQs) - parametric geometric primitives,
-            each mapped to a set of precomputed grasp poses, allowing
-            grasp composition on the target object based on these primitives.
-            Our proposed pipeline overcomes the problems: 
-            <ul>
-              <li>Noisy depth and incomplete view of the object, with a modelling step</li>
-              <li>Generalization to objects of any size, especially the ones larger in size and uncommon in tabletop scenarios</li>
-            </ul>
-            
-          </p>
-         
-        </div>
+
       </div>
     </div>
     <br>
@@ -277,7 +273,7 @@
   </div>
 
   <!-- Paper video. -->
-  <div class="columns is-centered has-text-centered">
+<!--   <div class="columns is-centered has-text-centered">
     <div class="column is-two-thirds">
       <h2 class="title is-3">Video</h2>
       <div class="publication-video">
@@ -285,7 +281,7 @@
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </section>
 
@@ -301,7 +297,7 @@
         <h2 class="title is-3"><span class="dperact">SuperQ-Grasp</span></h2>
 
         <!-- Interpolating. -->
-        <h3 class="title is-4">Superquadrics</h3>
+<!--         <h3 class="title is-4">Superquadrics</h3>
         <div class="content has-text-justified">
         <!-- <br> -->
         </div>
@@ -321,7 +317,7 @@
           (<a target="_blank" href="https://cse.buffalo.edu/~jryde/cse673/files/superquadrics.pdf">source</a>)
          </figcaption>
         </p>
-        </figure>
+        </figure> -->
        
         </br>
         
@@ -340,12 +336,6 @@
         </p>
         </br>
         </br>
-        <figure>
-          <p style="text-align:center;"> 
-          <img src="media/figures/system.jpg" class="interpolation-image" 
-          alt="Overview of the Graps Pose Estimation module"/>
-         <figcaption style="text-align:center;">Fig.2 - Overview of the Graps Pose Estimation method
-         </figcaption>
         </p>
         </figure>
         </br>
@@ -369,7 +359,7 @@
               <p style="text-align:center;"> 
               <img src="media/figures/pipeline.jpg" class="interpolation-image" 
               alt="Overview of the whole pipeline"/>
-             <figcaption style="text-align:center;">Fig.3 - Overview of the whole pipeline
+             <figcaption style="text-align:center;">Fig.2 - Overview of the whole pipeline
              </figcaption>
             </p>
             </figure>
@@ -431,7 +421,7 @@
         </br>
         </br>
 
-        <h3 class="title is-4">Real-world Experiments</h3>
+<!--         <h3 class="title is-4">Real-world Experiments</h3>
 
         <div class="columns">
           <div class="column has-text-centered">
@@ -440,19 +430,19 @@
             Visualize performance for
             
 
-      </div>
+      </div> -->
     </div>
   </div>
 </section>
 
-<video id="q-pred-video"
+<!-- <video id="q-pred-video"
        muted
        autoplay
        loop
        width="100%">
   <source src="media/results/qpred/tomat.mp4"
           type="video/mp4">
-</video>
+</video> -->
 
 <br>
 <br>
