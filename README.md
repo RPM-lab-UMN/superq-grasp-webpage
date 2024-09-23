@@ -1,5 +1,5 @@
-# PerAct
-
+# SuperQ-GRASP: Superquadrics-based Grasp Pose Estimation on
+Larger Objects for Mobile-Manipulation
 Anonymous Submission. 
 
 
