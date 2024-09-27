@@ -23,29 +23,33 @@
 
   <script>
     function updateSingleVideo() {
-      var method = document.getElementById("single-menu-methods").value;
       var object = document.getElementById("single-menu-objects").value;
 
 
-      var gif = document.getElementById("synthetic-data-result-gif");
-      gif.src = "media/results/synthetic_data/" + 
+      var gif1 = document.getElementById("synthetic-data-superq-grasp");
+      gif1.src = "media/results/synthetic_data/" + 
                   object +
-                  "-" +
-                  method + 
-                  ".gif"
+                  "-superq-grasp.gif"
+      var gif2 = document.getElementById("synthetic-data-contact-graspnet");
+      gif2.src = "media/results/synthetic_data/" + 
+                  object +
+                  "-contact-graspnet.gif"
+      var gif3 = document.getElementById("synthetic-data-contact-graspnet-depth");
+      gif3.src = "media/results/synthetic_data/" + 
+                  object +
+                  "-contact-graspnet-depth.gif"
     }
 
-    function updateQpredVideo() {
-      var task = document.getElementById("single-menu-qpred").value;
+    function updateRealWorldVideo() {
+      var task = document.getElementById("single-menu-real-world").value;
 
-      console.log("qpred", task)
 
-      var video = document.getElementById("q-pred-video");
-      video.src = "media/results/qpred/" + 
+      var video = document.getElementById("real-world-video");
+      video.src = "media/results/real-world/" + 
                   task + 
-                  ".mp4"
-      video.playbackRate = 1.75;
-      video.play();
+                  ".gif"
+      // video.playbackRate = 1.75;
+      // video.play();
     }
 
   </script>
@@ -66,8 +70,32 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <style>
+    .synthetic-data-image-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align to the top of the container */
+    }
+
+    .synthetic-data-image-container figure {
+        width: 33%; /* Adjust width for each figure */
+        text-align: center; /* Center the caption */
+        margin: 10px;
+    }
+
+    .synthetic-data-image-container img {
+        width: 100%; /* Make image take up the entire figure width */
+        height: auto; /* Keep aspect ratio */
+    }
+
+    figcaption {
+        font-size: 0.9em; /* Smaller font for captions */
+        color: #000; /* Black color for captions */
+        margin-top: 5px;
+    }
+  </style>
 </head>
-<body onload="updateSingleVideo(); updateQpredVideo();">
+<body onload="updateSingleVideo(); updateRealWorldVideo();">
 
 <section class="author">
   <div class="author-body">
@@ -80,126 +108,37 @@
           <!-- <h3 class="title is-4 conference-authors"><a target="_blank" href="https://www.ieee-ras.org/conferences-workshops/technically-co-sponsored/icar">ICRA 2025</a></h3> -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a target="_blank">Xun Tu</a><sup>1</sup>,</span>
+              <a target="_blank">Xun Tu</a>,</span>
             <span class="author-block">
-              <a target="_blank" href="https://karthikdesingh.com/">Karthik Desingh</a><sup>2</sup>,</span>
+              <a target="_blank">Karthik Desingh</a>,</span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Minnesota, Twin Cities</span>
+            <span class="author-block">University of Minnesota, Twin Cities</span>
           </div>
-
-<!--           <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a target="_blank" href="paper/Tu_elal_ICRA_2025.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-
-            <!-- Arxiv Link. -->
-            <!-- <span class="link-block">
-              <a target="_blank" href="https://arxiv.org/abs/2209.05451"
-                 class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="fas fa-file"></i>
-                </span>
-                <span>ArXiv</span>
-              </a>
-            </span> -->
-
-            <!-- Video Link. -->
-            <span class="link-block">
-              <a target="_blank" href="https://www.youtube.com"
-                 class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                </span>
-                <span>Video</span>
-              </a>
-            </span>
-
-
-            <!-- Code Link. -->
-            <span class="link-block">
-              <a target="_blank" href="https://github.com/TuXun1999/multi-purpose-representation"
-                 class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="fab fa-github"></i>
-                </span>
-                <span>Code</span>
-                </a>
-            </span>
-
-            </div>
-          </div> -->
-<!--           <br>
-          <br> -->
-
-
+          <!-- Project under review should not be released yet -->
+          <!-- Refer to PerAct if you want to add the links back-->
         </div>
       </div>
     </div>
   </div>
 </section>
-
+<br>
+<br>
+<br>
 <section class="hero teaser">
   <div class="container is-fullhd">
     <div class="hero-body">
       <div class="container">
-                 <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            Grasp planning and estimation has been a long-
-            standing research problem in robotics, with two main approaches
-            to find graspable poses on the objects:
-            <ol>
-              <li>Geometric approach, which rely on 3D models of objects 
-                and gripper to estimate valid grasp poses</li>
-              <li>Data-driven, learning-based approach,
-                with models trained to identify grasp poses on raw sensor ob-
-                servations</li>
-            </ol>
-            The later assumes comprehensive geometric coverage
-            during training phase, which, however, are typically biased toward table-
-            top scenarios and struggle to generalize to out-of-distribution
-            scenarios with larger objects (e.g. chair). Additionally, raw
-            sensor data (e.g. RGB-D data) from a single view of these
-            larger objects is often incomplete and noisy and necessitates
-            additional observations. 
-          </p>
-          <p>
-            In this paper, we take a geometric approach, leveraging
-            advancements in object modeling (e.g. 
-            <a target="_blank" href="https://www.matthewtancik.com/nerf">NeRF</a>) 
-            to build an implicit
-            model by taking RGB images from views around the target
-            object. This model enables the extraction of explicit mesh model
-            while also capturing the visual appearance from novel viewpoints
-            that is useful for perception tasks like object detection and pose
-            estimation. We further decompose the NeRF-reconstructed 3D
-            mesh into <a target="_blank" href="https://ieeexplore.ieee.org/document/1673799">
-              Superquadrics
-            </a>(SQs) - parametric geometric primitives,
-            each mapped to a set of precomputed grasp poses, allowing
-            grasp composition on the target object based on these primitives.
-            Our proposed pipeline overcomes the problems: 
-            <ol>
-              <li>Noisy depth and incomplete view of the object, with a modelling step</li>
-              <li>Generalization to objects of any size, especially the ones larger in size and uncommon in tabletop scenarios</li>
-            </ol>
-            
-          </p>
-         
+        <div class="columns is-vcentered  is-centered">
+          <img src="media/figures/qual_comp.jpg" class="interpolation-image" 
+         alt="Place holder for qualitative results."  
+         style="max-width: 100%;" />
+          </br>
         </div>
         <br>
         <h2 class="subtitle has-text-centered">
-        <span class="dsuperq-grasp">SupereQ-Grasp</span> is a comprehensive pipeline designed specifically to grasp the <b>large</b> objects uncommon in a tabletop scenario based on <b>Primitive Decomposition</b></h2>
+        <span class="dsuperq-grasp">SupereQ-Grasp</span> is a comprehensive pipeline designed specifically to grasp the <b>large</b> objects <br>uncommon in a tabletop scenario based on <b>Primitive Decomposition</b><br></h2>
       </div>
     </div>
   </div>
@@ -207,81 +146,103 @@
 
 
 <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-chair1">
-          <video poster="" id="chair1-1" autoplay controls muted loop height="100%">
-            <source src="media/intro/chair1-1.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair2-1">
-          <video poster="" id="chair2-1" autoplay controls muted loop height="100%">
-            <source src="media/intro/chair2-1.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair2-2">
-          <video poster="" id="chair2-2" autoplay controls muted loop height="100%">
-            <source src="media/intro/chair2-2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-luggage-case">
-          <video poster="" id="luggage-case" autoplay controls muted loop height="100%">
-            <source src="media/intro/luggage-case-1.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-table">
-          <video poster="" id="table" autoplay controls muted loop height="100%">
-            <source src="media/intro/table-1.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-vacuum-cleaner">
-          <video poster="" id="vacuum-cleaner" autoplay controls muted loop height="100%">
-            <source src="media/intro/vacuum-cleaner-1.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<h2 class="subtitle has-text-centered">
-</br>
-  We also validate the performance of our pipeline on 5 different <b>large objects</b> <br>
-  at <b>different poses</b> in real-world experiments using
-  <a target="_blank" href="https://bostondynamics.com/products/spot/">SPOT from Boston Dynamics</a>
-</h2>
-
-
-<section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
+        <h3 class="title is-4">Abstract</h3>
+        <div class="content has-text-justified">
+          <p>
+            Grasp planning and estimation have been a long-standing research problem in robotics, 
+            with two main approaches to find graspable poses on the objects: 1) geometric approach, 
+            which relies on 3D models of objects and the gripper to estimate valid grasp poses, and 2) 
+            data-driven, learning-based approach, with models trained to identify grasp poses from raw 
+            sensor observations. The latter assumes comprehensive geometric coverage during the training phase. 
+            However, the data-driven approach is typically biased toward tabletop scenarios and struggle to 
+            generalize to out-of-distribution scenarios with larger objects (e.g. chair). Additionally, 
+            raw sensor data (e.g. RGB-D data) from a single view of these larger objects is often incomplete 
+            and necessitates additional observations. In this paper, we take a geometric approach, leveraging 
+            advancements in object modeling (e.g. NeRF) to build an implicit model by taking RGB images from 
+            views around the target object. This model enables the extraction of explicit mesh model while also 
+            capturing the visual appearance from novel viewpoints that is useful for perception tasks like object 
+            detection and pose estimation. We further decompose the NeRF-reconstructed 3D mesh into superquadrics (SQs) 
+            - parametric geometric primitives, each mapped to a set of precomputed grasp poses, allowing grasp 
+            composition on the target object based on these primitives.Our proposed pipeline overcomes the problems: 
+            a) noisy depth and incomplete view of the object, with a modeling step, and b) generalization to objects 
+            of any size. 
+          </p>
 
+          <p></p>
+            We validate the performance of our pipeline on 5 different <b>large objects</b>
+            at <b>different poses</b> in real-world experiments using
+            <a target="_blank" href="https://bostondynamics.com/products/spot/">SPOT from Boston Dynamics</a>
+          </p>
+         
+        </div>
       </div>
     </div>
-    <br>
-    <br>
     <!--/ Abstract. -->
 
-  </div>
-
-  <!-- Paper video. -->
-<!--   <div class="columns is-centered has-text-centered">
-    <div class="column is-two-thirds">
-      <h2 class="title is-3">Video</h2>
-      <div class="publication-video">
-        <iframe src="https://www.youtube.com"
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-chair1">
+            <video poster="" id="chair1-1" autoplay controls muted loop height="100%">
+              <source src="media/intro/chair1-1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-chair2-1">
+            <video poster="" id="chair2-1" autoplay controls muted loop height="100%">
+              <source src="media/intro/chair2-1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-chair2-2">
+            <video poster="" id="chair2-2" autoplay controls muted loop height="100%">
+              <source src="media/intro/chair2-2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-luggage-case">
+            <video poster="" id="luggage-case" autoplay controls muted loop height="100%">
+              <source src="media/intro/luggage-case-1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-table">
+            <video poster="" id="table" autoplay controls muted loop height="70%">
+              <source src="media/intro/table-1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-vacuum-cleaner">
+            <video poster="" id="vacuum-cleaner" autoplay controls muted loop height="70%">
+              <source src="media/intro/vacuum-cleaner-1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!-- More teaser videos -->
       </div>
     </div>
-  </div> -->
+  </div>
+</section>
+
+
+<section class="section">
+  <!-- Paper video. -->
+  <div class="container is-max-widescreen">
+    <div class="column is-two-thirds">
+      <h1 class="title is-3">Video</h1>
+      <div style="text-align: center; width: 150%">
+        <video controls>
+          <source style="text-align: center; width: 100%" src="media/intro/video_short.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
 
 </section>
 
@@ -294,34 +255,9 @@
     <!-- Animation. -->
     <div class="rows is-centered ">
       <div class="row is-full-width">
-        <h2 class="title is-3"><span class="dperact">SuperQ-Grasp</span></h2>
+        <h2 class="title is-3">SuperQ-Grasp</h2>
 
         <!-- Interpolating. -->
-<!--         <h3 class="title is-4">Superquadrics</h3>
-        <div class="content has-text-justified">
-        <!-- <br> -->
-        </div>
-        <p>
-         Superquadrics is a series of primitive shape described by the implicit equation:
-          \[\left(\left(\frac{x}{a_x}\right)^{\frac{2}{\varepsilon_2}} + \left(\frac{y}{a_y}\right)^{\varepsilon_2}\right)^{\frac{\varepsilon_2}{\varepsilon_1}} + \left(\frac{z}{a_z}\right)^{\frac{2}{\varepsilon_1}}=1\]
-         where \(\varepsilon_1, \varepsilon_2, a_1, a_2, a_3\)are parameters. Only five parameters as each superquadric is specifed by, 
-         it can cover a range of different shapes, including cylinderic or cubic ones
-        </p>
-        </br>
-        </br>
-        <figure>
-          <p style="text-align:center;"> 
-          <img src="media/figures/superquadrics.png" class="interpolation-image" 
-          alt="Superquadrics with different parameters"/>
-         <figcaption style="text-align:center;">Fig.1 - Superquadrics with different parameters 
-          (<a target="_blank" href="https://cse.buffalo.edu/~jryde/cse673/files/superquadrics.pdf">source</a>)
-         </figcaption>
-        </p>
-        </figure> -->
-       
-        </br>
-        
-        </br>
         <h3 class="title is-4">Grasp Pose Estimation</h3>
         <div class="content has-text-justified">
         <!-- <br> -->
@@ -336,13 +272,14 @@
         </p>
         </br>
         </br>
+        <figure>
+          <p style="text-align:center;"> 
+          <img src="media/figures/pipeline.jpg" class="interpolation-image" 
+          alt="Overview of the Graps Pose Estimation module"/>
+         <figcaption style="text-align:center;">Fig.2 - Overview of the entire pipeline
+         </figcaption>
         </p>
         </figure>
-        </br>
-        </br>
-          <p>
-              
-          </p>
         </br>
         </br>
         <h3 class="title is-4">Real-world Experiments</h3>
@@ -353,16 +290,6 @@
              Also, unlike synthetic data in simulation, the gripper pose in real-world is unknown in advance.
              To deal with this issue, we depend on GroundingSAM and LoFTR to
              estimate gripper pose. 
-             <br>
-             <br>
-             <figure>
-              <p style="text-align:center;"> 
-              <img src="media/figures/pipeline.jpg" class="interpolation-image" 
-              alt="Overview of the whole pipeline"/>
-             <figcaption style="text-align:center;">Fig.2 - Overview of the whole pipeline
-             </figcaption>
-            </p>
-            </figure>
           </p>
         <br/>
         <br/>
@@ -377,15 +304,7 @@
           <div class="column has-text-centered">
             <h3 class="title is-5">Qualitative Results on selected Objects</h3>
 
-            Method
-            <div class="select is-small">
-              <select id="single-menu-methods" onchange="updateSingleVideo()">
-              <option value="superq-grasp" selected="selected">superq-grasp</option>
-              <option value="contact-graspnet">contact-graspnet</option>
-              <option value="contact-graspnet-depth">contact-graspnet-depth</option>
-              </select>
-            </div>
-            evaluated on the object
+            Evaluation on the object
             <div class="select is-small">     
               <select id="single-menu-objects" onchange="updateSingleVideo()">
               <option value="chair1" selected="selected">chair1</option>
@@ -414,35 +333,51 @@
             <br/>
             <br/>
 
-            <img id="synthetic-data-result-gif" src="media/results/synthetic_data/chair1-superq-grasp.gif" class="interpolation-image" 
-                  alt="Result on the selected method and object" />
+            <div class="synthetic-data-image-container">
+              <figure>
+                  <img src="./media/results/synthetic_data/chair1-contact-graspnet-depth.gif" alt="Image 1" id="synthetic-data-contact-graspnet-depth">
+                  <figcaption>Contact GraspNet+Depth</figcaption>
+              </figure>
+              <figure>
+                <img src="media/results/synthetic_data/chair1-contact-graspnet.gif" alt="Image 2" id="synthetic-data-contact-graspnet">
+                  <figcaption>Contact GraspNet+Mesh</figcaption>
+              </figure>
+              <figure>
+                                
+                <img src="media/results/synthetic_data/chair1-superq-grasp.gif" alt="Image 3" id="synthetic-data-superq-grasp">
+                  <figcaption>Superq Grasp</figcaption>
+              </figure>
+          </div>
           </div>
         </div>
         </br>
         </br>
 
-<!--         <h3 class="title is-4">Real-world Experiments</h3>
+        <h3 class="title is-4">Real-world Experiments</h3>
 
         <div class="columns">
           <div class="column has-text-centered">
-            <h3 class="title is-5">Examples</h3>
+            <h3 class="title is-5">Real-world Experiment examples</h3>
 
-            Visualize performance for
-            
+            Visualize the real-world experiment for   
+            <div class="select is-small is-rounded">     
+              <select id="single-menu-real-world" onchange="updateRealWorldVideo()">
+              <option value="chair2" selected="selected">chair2</option>
+              <!-- <option value="stick">"hit the green ball with the stick"</option>
+              <option value="handsan">"press the hand san"</option>
+              <option value="tape">"put the tape in the top drawer"</option> -->
+              </select>
+            </div>
 
-      </div> -->
+            <img src="./media/results/real-world/chair2.gif" 
+                alt="real-world-trial" id="real-world-video">
+
+      </div>
     </div>
   </div>
 </section>
 
-<!-- <video id="q-pred-video"
-       muted
-       autoplay
-       loop
-       width="100%">
-  <source src="media/results/qpred/tomat.mp4"
-          type="video/mp4">
-</video> -->
+
 
 <br>
 <br>
