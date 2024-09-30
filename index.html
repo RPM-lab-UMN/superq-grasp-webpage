@@ -47,9 +47,9 @@
       var video = document.getElementById("real-world-video");
       video.src = "media/results/real-world/" + 
                   task + 
-                  ".gif"
-      // video.playbackRate = 1.75;
-      // video.play();
+                  ".mp4"
+      video.playbackRate = 1;
+      video.play();
     }
 
   </script>
@@ -131,9 +131,10 @@
     <div class="hero-body">
       <div class="container">
         <div class="columns is-vcentered  is-centered">
-          <img src="media/figures/qual_comp.jpg" class="interpolation-image" 
-         alt="Place holder for qualitative results."  
-         style="max-width: 100%;" />
+          <video id="teaser" autoplay muted loop height="100%">
+            <source src="media/intro/teaser.mp4"
+                    type="video/mp4">
+          </video>
           </br>
         </div>
         <br>
@@ -276,7 +277,14 @@
           <p style="text-align:center;"> 
           <img src="media/figures/pipeline.jpg" class="interpolation-image" 
           alt="Overview of the Graps Pose Estimation module"/>
-         <figcaption style="text-align:center;">Fig.2 - Overview of the entire pipeline
+         <figcaption style="text-align:center;">Fig.2 - A comprehensive pipeline specifically
+           designed to estimate grasp poses for larger objects.
+            By representing an object as a collection of superquadrics,
+             the proposed grasp pose estimation method (SuperQ-GRASP) 
+             estimates the grasp pose closest to the current gripper by 
+             selecting the nearest superquadric and its corresponding valid 
+             grasp candidates. Combined with the object detection and pose estimation 
+             module, our pipeline enables the mobile manipulator to perform grasping tasks effectively.
          </figcaption>
         </p>
         </figure>
@@ -302,8 +310,11 @@
 
         <div class="columns">
           <div class="column has-text-centered">
-            <h3 class="title is-5">Qualitative Results on selected Objects</h3>
-
+            <h3 class="title is-5">Qualitative Results on selected Objects
+            </h3>
+            <font size=1>(Click the videos to open them in a new tab, if you want to see them more clearly) <br>
+            <br>
+          </font>
             Evaluation on the object
             <div class="select is-small">     
               <select id="single-menu-objects" onchange="updateSingleVideo()">
@@ -328,6 +339,8 @@
               <option value="vacuum-cleaner-real">vacuum-cleaner-real</option>
               <option value="suitcase-real">suitcase-real</option>
             </select>
+           
+            
             </div>
             
             <br/>
@@ -335,24 +348,29 @@
 
             <div class="synthetic-data-image-container">
               <figure>
-                  <img src="./media/results/synthetic_data/chair1-contact-graspnet-depth.gif" alt="Image 1" id="synthetic-data-contact-graspnet-depth">
+                  <img src="./media/results/synthetic_data/chair1-contact-graspnet-depth.gif" alt="Image 1" id="synthetic-data-contact-graspnet-depth" onclick="window.open(this.src, '_blank');">
                   <figcaption>Contact GraspNet+Depth</figcaption>
               </figure>
               <figure>
-                <img src="media/results/synthetic_data/chair1-contact-graspnet.gif" alt="Image 2" id="synthetic-data-contact-graspnet">
+                <img src="media/results/synthetic_data/chair1-contact-graspnet.gif" alt="Image 2" id="synthetic-data-contact-graspnet" onclick="window.open(this.src, '_blank');">
                   <figcaption>Contact GraspNet+Mesh</figcaption>
               </figure>
               <figure>
                                 
-                <img src="media/results/synthetic_data/chair1-superq-grasp.gif" alt="Image 3" id="synthetic-data-superq-grasp">
+                <img src="media/results/synthetic_data/chair1-superq-grasp.gif" alt="Image 3" id="synthetic-data-superq-grasp" onclick="window.open(this.src, '_blank');">
                   <figcaption>Superq Grasp</figcaption>
               </figure>
-          </div>
+            </div>
+            
           </div>
         </div>
-        </br>
-        </br>
-
+        <b>NOTE:</b><br>
+        <font color="red">Red: </font> invalid grasp poses;  <font  color="#87ed2d">Green: </font>valid grasp poses <br>
+        <font color="blue">Blue dots: </font> observed depth point cloud as a partial view of the object
+        <br>
+        <br>
+      <br>
+      <br>
         <h3 class="title is-4">Real-world Experiments</h3>
 
         <div class="columns">
@@ -362,15 +380,16 @@
             Visualize the real-world experiment for   
             <div class="select is-small is-rounded">     
               <select id="single-menu-real-world" onchange="updateRealWorldVideo()">
-              <option value="chair2" selected="selected">chair2</option>
-              <!-- <option value="stick">"hit the green ball with the stick"</option>
-              <option value="handsan">"press the hand san"</option>
-              <option value="tape">"put the tape in the top drawer"</option> -->
+              <option value="chair1" selected="selected">chair1</option>
+              <option value="chair2">chair2</option>
+              <option value="vacuum-cleaner">vacuum-cleaner</option>
+              <option value="luggage-case">luggage-case</option>
+              <option value="table">table</option>
               </select>
             </div>
 
-            <video controls>
-              <source id="real-world-video" style="text-align: center; width: 100%" src="media/results/real-world/chair2.mp4" type="video/mp4">
+            <video  id="real-world-video" controls>
+              <source style="text-align: center; width: 100%" src="media/results/real-world/chair1.mp4" type="video/mp4">
             Your browser does not support the video tag.
             </video>
 
