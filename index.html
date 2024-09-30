@@ -82,6 +82,11 @@
         text-align: center; /* Center the caption */
         margin: 10px;
     }
+    .synthetic-data-image-container video {
+        width: 33%; /* Adjust width for each figure */
+        text-align: center; /* Center the caption */
+        margin: 10px;
+    }
 
     .synthetic-data-image-container img {
         width: 100%; /* Make image take up the entire figure width */
@@ -139,7 +144,7 @@
         </div>
         <br>
         <h2 class="subtitle has-text-centered">
-        <span class="dsuperq-grasp">SupereQ-GRASP</span> is a comprehensive pipeline designed specifically to grasp the <b>large</b> objects <br>uncommon in a tabletop scenario based on <b>Primitive Decomposition</b><br></h2>
+        <span class="dsuperq-grasp">SuperQ-GRASP</span> is a grasp pose estimation method designed specifically to grasp the <b>large</b> objects <br>uncommon in a tabletop scenario based on <b>Primitive Decomposition</b><br></h2>
       </div>
     </div>
   </div>
@@ -186,43 +191,33 @@
 
     <div class="hero-body">
       <div class="container">
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-chair1">
-            <video poster="" id="chair1-1" autoplay controls muted loop height="100%">
-              <source src="media/intro/chair1-1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-chair2-1">
-            <video poster="" id="chair2-1" autoplay controls muted loop height="100%">
-              <source src="media/intro/chair2-1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-chair2-2">
-            <video poster="" id="chair2-2" autoplay controls muted loop height="100%">
-              <source src="media/intro/chair2-2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-luggage-case">
-            <video poster="" id="luggage-case" autoplay controls muted loop height="100%">
-              <source src="media/intro/luggage-case-1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-table">
-            <video poster="" id="table" autoplay controls muted loop height="70%">
-              <source src="media/intro/table-1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-vacuum-cleaner">
-            <video poster="" id="vacuum-cleaner" autoplay controls muted loop height="70%">
-              <source src="media/intro/vacuum-cleaner-1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
+        <div class="synthetic-data-image-container">
+          <video poster="" id="chair1-1" autoplay controls muted loop height="100%">
+            <source src="media/intro/chair1-1.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="chair2-1" autoplay controls muted loop height="100%">
+            <source src="media/intro/chair2-1.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="chair2-2" autoplay controls muted loop height="100%">
+            <source src="media/intro/chair2-2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="synthetic-data-image-container">
+          <video poster="" id="luggage-case" autoplay controls muted loop height="100%">
+            <source src="media/intro/luggage-case-1.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="table" autoplay controls muted loop height="70%">
+            <source src="media/intro/table-1.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="vacuum-cleaner" autoplay controls muted loop height="70%">
+            <source src="media/intro/vacuum-cleaner-1.mp4"
+                    type="video/mp4">
+          </video>
         </div>
         <!-- More teaser videos -->
       </div>
@@ -264,12 +259,12 @@
         <!-- <br> -->
         </div>
         <p>
-          The main contribution of the project is to estimate grasp poses on the large objects, which are uncommon 
-          in table scenarios. The key idea is to decompose the target object mesh into several primitive
-          shapes, predict grasp poses on the individual primitive shape, and then filter out the invalid
-          ones. Here, we use Superquadrics as the primitive shape, and depend on <a target="_blank" 
-          href="https://github.com/ChirikjianLab/Marching-Primitives">Marching
-          Primitives</a> to decompose the target object mesh into several smaller superquadrics. 
+          The primary contribution of the project is to propose a grasp pose estimation method on the large objects that are uncommon 
+          in table scenarios. The method involves decomposing the target object mesh into several primitive shapes, 
+          predicting grasp poses for each individual primitive, and subsequently filtering out the invalid poses to maintain only the valid ones. 
+          In this context, <a href="https://superquadrics.com/">Superquadrics</a> are utilized as the primitive shapes, 
+          and <a target="_blank" href="https://github.com/ChirikjianLab/Marching-Primitives">Marching
+          Primitives</a> is employed to decompose the target object's mesh into smaller superquadrics, upon which grasp pose estimation is applied.
         </p>
         </br>
         </br>
@@ -295,9 +290,9 @@
             We validate the performance of our pipeline on the robotic platform
             <a target="_blank" href="https://bostondynamics.com/products/spot/">SPOT from Boston Dynamics</a>.
              We use <a target="_blank" href="https://github.com/NVlabs/instant-ngp">instant-NGP</a> to construct the target object mesh.
-             Also, unlike synthetic data in simulation, the gripper pose in real-world is unknown in advance.
-             To deal with this issue, we depend on GroundingSAM and LoFTR to
-             estimate gripper pose. 
+             Also, unlike synthetic data in simulation, the object pose with respect to the gripper in real-world experiments is unknown in advance.
+             Therefore, to deal with this issue, we depend on <a href="https://github.com/IDEA-Research/Grounded-Segment-Anything">GroundingSAM</a> 
+             and <a href="https://zju3dv.github.io/loftr/">LoFTR</a> to estimate the object pose relative to the gripper. 
           </p>
         <br/>
         <br/>
