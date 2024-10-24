@@ -39,6 +39,23 @@
                   object +
                   "-contact-graspnet-depth.gif"
     }
+    function updateSingleVideoSmall() {
+      var object = document.getElementById("single-menu-small-objects").value;
+
+
+      var gif1 = document.getElementById("synthetic-data-small-superq-grasp");
+      gif1.src = "media/results/synthetic_data/" + 
+                  object +
+                  "-superq-grasp.gif"
+      var gif2 = document.getElementById("synthetic-data-small-contact-graspnet");
+      gif2.src = "media/results/synthetic_data/" + 
+                  object +
+                  "-contact-graspnet.gif"
+      var gif3 = document.getElementById("synthetic-data-small-contact-graspnet-depth");
+      gif3.src = "media/results/synthetic_data/" + 
+                  object +
+                  "-contact-graspnet-depth.gif"
+    }
 
     function updateRealWorldVideo() {
       var task = document.getElementById("single-menu-real-world").value;
@@ -100,7 +117,7 @@
     }
   </style>
 </head>
-<body onload="updateSingleVideo(); updateRealWorldVideo();">
+<body onload="updateSingleVideo(); updateSingleVideoSmall(); supdateRealWorldVideo();">
 
 <section class="author">
   <div class="author-body">
@@ -302,8 +319,55 @@
         <h2 class="title is-3">Results</h2>
 
         <h3 class="title is-4">Experiments on synthetic data</h3>
-
+        At first, we show that our pipeline can have a competitive performance in comparison to the two baseline methods on 
+        the small synthetic objects that are typically placed on the taletop. The mesh models of the objects are taken from 
+        <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a>
         <div class="columns">
+          <div class="column has-text-centered">
+              <h3 class="title is-5">Qualitative Results on small Objects
+              </h3>
+              <font size=1>(Click the videos to open them in a new tab, if you want to see them more clearly) <br>
+              <br>
+            </font>
+              Evaluation on the object
+              <div class="select is-small">     
+                <select id="single-menu-small-objects" onchange="updateSingleVideoSmall()">
+                <option value="fuze" selected="selected">fuze</option>
+                <option value="kettle">kettle</option>
+                <option value="laptop">laptop</option>
+                <option value="mouse">mouse</option>
+                <option value="plier">plier</option>
+              </select>
+             
+              
+              </div>
+              
+              <br/>
+              <br/>
+  
+              <div class="synthetic-data-image-container">
+                <figure>
+                    <img src="./media/results/synthetic_data/fuze-contact-graspnet-depth.gif" alt="Image 1" id="synthetic-data-small-contact-graspnet-depth" onclick="window.open(this.src, '_blank');">
+                    <figcaption>Contact GraspNet+Depth</figcaption>
+                </figure>
+                <figure>
+                  <img src="media/results/synthetic_data/fuze-contact-graspnet.gif" alt="Image 2" id="synthetic-data-small-contact-graspnet" onclick="window.open(this.src, '_blank');">
+                    <figcaption>Contact GraspNet+Mesh</figcaption>
+                </figure>
+                <figure>
+                                  
+                  <img src="media/results/synthetic_data/fuze-superq-grasp.gif" alt="Image 3" id="synthetic-data-small-superq-grasp" onclick="window.open(this.src, '_blank');">
+                    <figcaption>Superq Grasp</figcaption>
+                </figure>
+              </div>
+              
+            </div>
+          </div>
+
+          Furthermore, as the main focus of this project, we demonstrate the performance of our pipeline on 
+          large synthetic objects taken from <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a>. 
+          Compared to the two baseline methods, our pipelilne can predict more stable grasp poses at the region 
+          closer to the camera, which is also the starting pose of the gripper in our case for the SPOT robot. 
           <div class="column has-text-centered">
             <h3 class="title is-5">Qualitative Results on selected Objects
             </h3>
