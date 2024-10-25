@@ -319,55 +319,21 @@
         <h2 class="title is-3">Results</h2>
 
         <h3 class="title is-4">Experiments on synthetic data</h3>
-        At first, we show that our pipeline can have a competitive performance in comparison to the two baseline methods on 
-        the small synthetic objects that are typically placed on the taletop. The mesh models of the objects are taken from 
-        <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a>
-        <div class="columns">
-          <div class="column has-text-centered">
-              <h3 class="title is-5">Qualitative Results on small Objects
-              </h3>
-              <font size=1>(Click the videos to open them in a new tab, if you want to see them more clearly) <br>
-              <br>
-            </font>
-              Evaluation on the object
-              <div class="select is-small">     
-                <select id="single-menu-small-objects" onchange="updateSingleVideoSmall()">
-                <option value="fuze" selected="selected">fuze</option>
-                <option value="kettle">kettle</option>
-                <option value="laptop">laptop</option>
-                <option value="mouse">mouse</option>
-                <option value="plier">plier</option>
-              </select>
-             
-              
-              </div>
-              
-              <br/>
-              <br/>
-  
-              <div class="synthetic-data-image-container">
-                <figure>
-                    <img src="./media/results/synthetic_data/fuze-contact-graspnet-depth.gif" alt="Image 1" id="synthetic-data-small-contact-graspnet-depth" onclick="window.open(this.src, '_blank');">
-                    <figcaption>Contact GraspNet+Depth</figcaption>
-                </figure>
-                <figure>
-                  <img src="media/results/synthetic_data/fuze-contact-graspnet.gif" alt="Image 2" id="synthetic-data-small-contact-graspnet" onclick="window.open(this.src, '_blank');">
-                    <figcaption>Contact GraspNet+Mesh</figcaption>
-                </figure>
-                <figure>
-                                  
-                  <img src="media/results/synthetic_data/fuze-superq-grasp.gif" alt="Image 3" id="synthetic-data-small-superq-grasp" onclick="window.open(this.src, '_blank');">
-                    <figcaption>Superq Grasp</figcaption>
-                </figure>
-              </div>
-              
-            </div>
-          </div>
-
-          Furthermore, as the main focus of this project, we demonstrate the performance of our pipeline on 
-          large synthetic objects taken from <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a>. 
+          We create a dataset of 20 objects with 15 synthetic objects (3 chairs, 3 carts, 2 buckets, 2 boxes, 2 suitcases, 
+          2 tables, and 1 folding chair) selected from <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a> 
+          , and 5 real-world objects 
+          (2 chairs, 1 vacuum cleaner, 1 suitcase, and 1 table). These objects represent common large objects encountered daily 
+          and cover a diverse range of geometrical structures. <br><br>
+          We establish two baselines to capture variations in how <a href="https://github.com/NVlabs/contact_graspnet">
+          Contact-GraspNet </a>
+          can be employed for grasp pose estimation, allowing for comparison with our 
+          SuperQ-GRASP method: 1) CG+Mesh: This baseline applies Contact-GraspNet to the point cloud extracted from the complete 3D mesh of the target object; 
+          2) CG+Depth: This baseline applied Contact-GraspNet to the point cloud obtained from a single-view depth image as seen by a robot's gripper camera. 
+          <br>
+          <br>
           Compared to the two baseline methods, our pipelilne can predict more stable grasp poses at the region 
           closer to the camera, which is also the starting pose of the gripper in our case for the SPOT robot. 
+          Also, the predicted grasp poses are more concentrated in a specific region.
           <div class="column has-text-centered">
             <h3 class="title is-5">Qualitative Results on selected Objects
             </h3>
@@ -422,16 +388,27 @@
             </div>
             
           </div>
-        </div>
+
         <b>NOTE:</b><br>
         <font color="red">Red: </font> invalid grasp poses;  <font  color="#87ed2d">Green: </font>valid grasp poses <br>
         <font color="blue">Blue dots: </font> observed depth point cloud as a partial view of the object
         <br>
         <br>
-      <br>
-      <br>
+        <br>
+        <br>
         <h3 class="title is-4">Real-world Experiments</h3>
-
+        To validate the performance of our pipeline in real-world scenarios, we place each of the 5 real-world objects 
+        at a specified location with arbitrary orientations. 
+        The Boston Dynamics Spot robot is then tasked with 
+        estimating the object's pose, identifying a graspable pose, 
+        and executing a reach-and-grasp action.
+        <br><br>
+        
+        Our pipeline demonstrates a higher success rate across four test 
+        objects (two chairs, a vacuum cleaner, and a table), 
+        highlighting its capability to estimate valid grasp poses 
+        for larger objects with complex geometries, including high-genus objects like chairs.
+        Here are the demonstrations. 
         <div class="columns">
           <div class="column has-text-centered">
             <h3 class="title is-5">Real-world Experiment examples</h3>
@@ -451,9 +428,60 @@
               <source style="text-align: center; width: 100%" src="media/results/real-world/chair1.mp4" type="video/mp4">
             Your browser does not support the video tag.
             </video>
+          </div>
+        </div>
 
+        <h3 class="title is-4">Additional Results</h3>
+        In addition, we show that our pipeline can have a competitive performance in comparison to the two baseline methods on 
+        the small synthetic objects that are typically placed on the taletop. The mesh models of the objects are taken from 
+        <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a>
+        <div class="columns">
+          <div class="column has-text-centered">
+              <h3 class="title is-5">Qualitative Results on small Objects
+              </h3>
+              <font size=1>(Click the videos to open them in a new tab, if you want to see them more clearly) <br>
+              <br>
+            </font>
+              Evaluation on the object
+              <div class="select is-small">     
+                <select id="single-menu-small-objects" onchange="updateSingleVideoSmall()">
+                <option value="fuze" selected="selected">fuze</option>
+                <option value="kettle">kettle</option>
+                <option value="laptop">laptop</option>
+                <option value="mouse">mouse</option>
+                <option value="plier">plier</option>
+              </select>
+             
+              
+              </div>
+              
+              <br/>
+              <br/>
+  
+              <div class="synthetic-data-image-container">
+                <figure>
+                    <img src="./media/results/synthetic_data/fuze-contact-graspnet-depth.gif" alt="Image 1" id="synthetic-data-small-contact-graspnet-depth" onclick="window.open(this.src, '_blank');">
+                    <figcaption>Contact GraspNet+Depth</figcaption>
+                </figure>
+                <figure>
+                  <img src="media/results/synthetic_data/fuze-contact-graspnet.gif" alt="Image 2" id="synthetic-data-small-contact-graspnet" onclick="window.open(this.src, '_blank');">
+                    <figcaption>Contact GraspNet+Mesh</figcaption>
+                </figure>
+                <figure>
+                                  
+                  <img src="media/results/synthetic_data/fuze-superq-grasp.gif" alt="Image 3" id="synthetic-data-small-superq-grasp" onclick="window.open(this.src, '_blank');">
+                    <figcaption>Superq Grasp</figcaption>
+                </figure>
+              </div>
+              
+            </div>
+          </div>
+          <b>NOTE:</b><br>
+        <font color="red">Red: </font> invalid grasp poses;  <font  color="#87ed2d">Green: </font>valid grasp poses <br>
+        <font color="blue">Blue dots: </font> observed depth point cloud as a partial view of the object
+        <br>
+    
       </div>
-    </div>
   </div>
 </section>
 
