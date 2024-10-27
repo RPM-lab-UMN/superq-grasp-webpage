@@ -250,7 +250,7 @@
       <h1 class="title is-3">Video</h1>
       <div style="text-align: center; width: 150%">
         <video controls>
-          <source style="text-align: center; width: 100%" src="media/intro/video_short.mp4" type="video/mp4">
+          <source style="text-align: center; width: 100%" src="media/intro/video_long.mp4" type="video/mp4">
         Your browser does not support the video tag.
         </video>
       </div>
@@ -432,6 +432,7 @@
         </div>
 
         <h3 class="title is-4">Additional Results</h3>
+        <h4 class="title is-5">Results on small objects</h4>
         In addition, we show that our pipeline can have a competitive performance in comparison to the two baseline methods on 
         the small synthetic objects that are typically placed on the taletop. The mesh models of the objects are taken from 
         <a href="https://sapien.ucsd.edu/browse">PartNet-Mobility</a>
@@ -480,7 +481,36 @@
         <font color="red">Red: </font> invalid grasp poses;  <font  color="#87ed2d">Green: </font>valid grasp poses <br>
         <font color="blue">Blue dots: </font> observed depth point cloud as a partial view of the object
         <br>
-    
+        <br>
+        <br>
+        <h4 class="title is-5">Custom graspable region</h4>
+        We also demonstrate that our pipeline can allow the user to select the custom graspable 
+        region. <b>For each individual superquadric at the edge of the object (labeled in different 
+        colors and associated with their own indices) , it can be regarded 
+        as one potential graspable region </b>, where grasp poses can be generated and evaluated. The 
+        user can also use the index of the superquadric directly to select the desirable graspable 
+        region to generate valid grasp poses, depending on the downstream tasks. 
+        
+        <div class="columns">
+          <div class="column has-text-centered">
+            <h3 class="title is-5">Custom graspable region selection examples</h3>
+
+            By default, the pipeline will select the closest superquadric to the 
+            current gripper as the graspable region to generate grasp poses: 
+            <video  id="region-closest-video" controls>
+              <source style="text-align: center; width: 70%" src="media/results/real-world/region_closest.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
+            <br>
+            If specified, the user can also select the custom superquadric (in this example, 
+            the user wants to grasp one edge of the back of the chair, so the index of the superquadric, 
+            which is 54, can be fed to the pipeline) as the desired graspable region to generate grasp poses
+            <video  id="region-selected-video" controls>
+              <source style="text-align: center; width: 70%" src="media/results/real-world/region54.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
       </div>
   </div>
 </section>
